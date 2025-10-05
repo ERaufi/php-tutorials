@@ -1,10 +1,18 @@
 <?php
-$text = "Hello";   // String
-$number = 100;     // Integer
-$price = 19.99;    // Float
-$isActive = true;  // Boolean
-$name = "my name";
-$age = 25;
-echo $name; // my name
-echo $age;  // 25
+$text = "Hello<br>";
+$number = 10;
+$price = 19.99;
+$isActive = true;
+
+$AGE = 20;
+$age = 30;
+
+
+echo $text;
+$text = "new value<br>";
+echo $text;
+
+const version = '2.0';
+echo version;
+
 ?>

@@ -27,66 +27,60 @@
 
 <body>
 
-    <h2>Form Validation Example</h2>
-
     <?php
-    // Define error variables
-    $nameError = "";
-    $emailError = "";
-    $ageError = "";
-    $genderError = "";
+    $nameError = '';
+    $emailError = '';
+    $ageError = '';
+    $genderError = '';
 
-    // Define input variables
-    $name = "";
-    $email = "";
-    $age = "";
-    $gender = "";
-    $hobby = [];
+    $name = '';
+    $email = '';
+    $age = '';
+    $gender = '';
+    $hobby = '';
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        // --- NAME VALIDATION ---
-        if (!isset($_POST["name"]) || $_POST["name"] == "") {
-            $nameError = "Name is required.";
+
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        if ($_POST['name'] == '') {
+            $nameError = "Name is required";
         } else {
-            $name = $_POST["name"];
-            if (strlen($name) < 3) {
-                $nameError = "Name must be at least 3 characters.";
+            $name = $_POST['name'];
+            if (strlen($_POST['name']) < 3) {
+                $nameError = 'name must be at least 3 characters';
             }
         }
 
-        // --- EMAIL VALIDATION ---
-        if (!isset($_POST["email"]) || $_POST["email"] == "") {
-            $emailError = "Email is required.";
+        if ($_POST['email'] == '') {
+            $emailError = "email is required";
         } else {
-            $email = $_POST["email"];
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailError = "Invalid email format.";
+            $email = $_POST['email'];
+            if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                $emailError = "Invalid email format";
             }
         }
 
-        // --- AGE VALIDATION ---
-        if (!isset($_POST["age"]) || $_POST["age"] == "") {
-            $ageError = "Age is required.";
+        if ($_POST['age'] == '') {
+            $ageError = "age is required";
         } else {
-            $age = $_POST["age"];
-            if (!is_numeric($age)) {
-                $ageError = "Age must be a number.";
+            $age = $_POST['age'];
+            if (!is_numeric($_POST['age'])) {
+                $ageError = "Age must be a number";
             }
         }
 
-        // --- GENDER VALIDATION (RADIO BUTTON) ---
-        if (!isset($_POST["gender"])) {
-            $genderError = "Please select your gender.";
+        if (!isset($_POST['gender'])) {
+            $genderError = 'Please select your gender';
         } else {
-            $gender = $_POST["gender"];
+            $gender = $_POST['gender'];
         }
 
-        // --- HOBBY CHECKBOXES ---
-        if (isset($_POST["hobby"])) {
-            $hobby = $_POST["hobby"]; // Array
+
+        if (isset($_POST['hobby'])) {
+            $hobby = $_POST['hobby'];
         }
     }
+
     ?>
 
     <div class="form-box">
@@ -94,30 +88,31 @@
         <form method="POST">
 
             <label>Name:</label><br>
-            <input type="text" name="name" value="<?php echo $name; ?>">
-            <div class="error"><?php echo $nameError; ?></div>
+            <input type="text" name="name" value="<?php echo $name ?>">
+            <div class="error"><?php echo $nameError  ?></div>
             <br>
 
             <label>Email:</label><br>
-            <input type="text" name="email" value="<?php echo $email; ?>">
-            <div class="error"><?php echo $emailError; ?></div>
+            <input type="text" name="email" value="<?php echo $email ?>">
+            <div class="error"><?php echo $emailError  ?></div>
+
             <br>
 
             <label>Age:</label><br>
-            <input type="text" name="age" value="<?php echo $age; ?>">
-            <div class="error"><?php echo $ageError; ?></div>
+            <input type="text" name="age" value="<?php echo $age ?>">
+            <div class="error"><?php echo $ageError  ?></div>
+
             <br>
 
             <label>Gender:</label><br>
-            <input type="radio" name="gender" value="Male" <?php if ($gender == "Male") echo "checked"; ?>> Male
-            <input type="radio" name="gender" value="Female" <?php if ($gender == "Female") echo "checked"; ?>> Female
-            <div class="error"><?php echo $genderError; ?></div>
+            <input type="radio" name="gender" value="Male" <?php if ($gender == 'Male') echo 'checked' ?>> Male
+            <input type="radio" name="gender" value="Female" <?php if ($gender == 'Female') echo 'checked' ?>> Female
             <br><br>
 
             <label>Hobbies:</label><br>
-            <input type="checkbox" name="hobby[]" value="Reading" <?php if (in_array("Reading", $hobby)) echo "checked"; ?>> Reading
-            <input type="checkbox" name="hobby[]" value="Sports" <?php if (in_array("Sports", $hobby)) echo "checked"; ?>> Sports
-            <input type="checkbox" name="hobby[]" value="Games" <?php if (in_array("Games", $hobby)) echo "checked"; ?>> Games
+            <input type="checkbox" name="hobby[]" value="Reading" <?php if (in_array('Reading', $hobby)) echo 'checked' ?>> Reading
+            <input type="checkbox" name="hobby[]" value="Sports" <?php if (in_array('Sports', $hobby)) echo 'checked' ?>> Sports
+            <input type="checkbox" name="hobby[]" value="Games" <?php if (in_array('Games', $hobby)) echo 'checked' ?>> Games
             <br><br>
 
             <button type="submit">Submit</button>
